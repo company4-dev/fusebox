@@ -47,7 +47,7 @@ jobs:
                   mkdir -p ~/.ssh
                   echo "${{ secrets.BITBUCKET_SSH_KEY }}" > ~/.ssh/id_rsa
                   chmod 600 ~/.ssh/id_rsa
-                  ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
+                  ssh-keyscan ssh.bitbucket.org >> ~/.ssh/known_hosts
 
             # - name: Coding standards for local repo
             #   run: |
@@ -64,7 +64,7 @@ jobs:
 
             - name: Clone Bitbucket repo
               run: |
-                  git clone git@bitbucket.org:jellyhaus/jellybean.git bitbucket-source
+                  git clone git@ssh.bitbucket.org:jellyhaus/jellybean.git bitbucket-source
 
             - name: Set-up source
               run: |
