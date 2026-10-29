@@ -64,7 +64,7 @@ jobs:
 
             - name: Clone Bitbucket repo
               run: |
-                  git clone git@bitbucket.org:jellyhaus/jellybean.git bitbucket-source
+                  git clone git@ssh.bitbucket.org:jellyhaus/jellybean.git bitbucket-source
 
             - name: Set-up source
               run: |
