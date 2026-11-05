@@ -20,6 +20,9 @@ jobs:
         steps:
             - name: Checkout GitHub repo (deployment scripts)
               uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  fetch-tags: true
 
             # - name: Setup Node
             #   uses: actions/setup-node@v4
@@ -104,11 +107,10 @@ jobs:
                 # Commit and push the version bump
                 git add composer.json
                 git commit -m "Bump version to $VERSION"
-                git push origin ${{ github.ref_name }}
-
-                # Create and push the tag
                 git tag -a "$VERSION" -m "Release $VERSION"
-                git push origin "$VERSION"
+
+                # Push branch and tag together
+                git push origin "HEAD:refs/heads/${{ github.ref_name }}" "refs/tags/$VERSION"
 
             - name: Create release archive
               run: |
